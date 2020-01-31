@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from './Header';
 import Order from './Order';
 import Inventory from './Inventory';
@@ -11,6 +12,11 @@ class App extends React.Component {
     fishes: {},
     order: {}
   };
+
+  static propTypes = {
+    match: PropTypes.object
+  }
+
   componentDidMount() {
     const { params } = this.props.match;
     const localStorageRef = localStorage.getItem(params.storeId);
@@ -81,7 +87,7 @@ class App extends React.Component {
     const order = { ...this.state.order };
     // 2. Delete item matching the key
     delete order[key];
-    // 3. Call setState to update state object
+    // 3. Call setState to update state
     this.setState({ order });
   }
 
